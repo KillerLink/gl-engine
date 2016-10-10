@@ -6,6 +6,6 @@ EXECUTABLE= main
 
 all:
 	echo "Building app now!"
-	gcc $(SOURCES) $(LIBRARIES) -o main $(INCLUDEDIRS) $(LINKS)
+	gcc $(SOURCES) $(LIBRARIES) -o $(EXECUTABLE) $(INCLUDEDIRS) $(LINKS)
 clean:
 	rm -f $(EXECUTABLE)

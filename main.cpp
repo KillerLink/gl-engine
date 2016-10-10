@@ -295,43 +295,12 @@ int main(int argc, char *argv[]) {
     glViewport(0, 0, width, height);
     glfwSetKeyCallback(window, key_callback);
     
-    GLuint vertexBuffer, vertexShader, fragmentShader, shaderProgram;
-    GLint vertexSuccess, fragmentSuccess, shaderSuccess;
-    GLchar infoLog[512];
+    GLuint vertexBuffer;
     GLuint VAO, EBO;
     GLfloat MVPlocation;
     
-    vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderText, NULL);
-    glCompileShader(vertexShader);
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &vertexSuccess);
-    if (!vertexSuccess) {
-      glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-      printf("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n");
-    }
-    
-    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderText, NULL);
-    glCompileShader(fragmentShader);
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &fragmentSuccess);
-    if (!fragmentSuccess) {
-      glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-      printf("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n");
-    }
-    
-    shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &shaderSuccess);
-    if (!shaderSuccess) {
-      glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-      printf("ERROR::SHADER::LINKER::LINK_FAILED\n");
-    }
-    
-    glUseProgram(shaderProgram);
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
+	Shader myShader("vertex.shader","fragment.shader");
+    myShader.use();
     
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
@@ -345,7 +314,7 @@ int main(int argc, char *argv[]) {
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLfloat*)28 );
     glEnableVertexAttribArray(2);
-    MVPlocation = glGetUniformLocation(shaderProgram, "MVP");
+    MVPlocation = glGetUniformLocation(myShader.program, "MVP");
     glBindVertexArray(0);
     
     glGenBuffers(1, &EBO);
@@ -372,9 +341,6 @@ int main(int argc, char *argv[]) {
     float threshold = 180.0f;
     float prescaler = 0.017f;
     float postscaler = 0.017f;
-    
-	Shader myShader("vertex.shader","fragment.shader");
-    myShader.use();
     
     while (!glfwWindowShouldClose(window)) {
         poll_snavi();
