@@ -21,6 +21,8 @@
 
 #include <SOIL/SOIL.h>
 
+#include "shader.hpp"
+
 #define test_bit(bit, array)  (array [bit / 8] & (1 << (bit % 8)))
 
 int snavi;
@@ -277,7 +279,6 @@ int main(int argc, char *argv[]) {
 	printf("This hardcoded feature will become optional later!\n");
     init_snavi(argc,argv);
     glfwSetErrorCallback(error_callback);
-    
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -372,6 +373,8 @@ int main(int argc, char *argv[]) {
     float prescaler = 0.017f;
     float postscaler = 0.017f;
     
+	Shader myShader("vertex.shader","fragment.shader");
+    myShader.use();
     
     while (!glfwWindowShouldClose(window)) {
         poll_snavi();
