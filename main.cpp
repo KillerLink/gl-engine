@@ -297,24 +297,26 @@ int main(int argc, char *argv[]) {
     
     GLuint vertexBuffer;
     GLuint VAO, EBO;
-    GLfloat MVPlocation;
+    GLfloat MVPlocation, VertexLocation, ColorLocation, TexcLocation;
     
 	Shader myShader("vertex.shader","fragment.shader");
     myShader.use();
     
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
-    
+    MVPlocation = glGetUniformLocation(myShader.program, "MVP");
+    VertexLocation = glGetAttribLocation(myShader.program,"position");
+    ColorLocation = glGetAttribLocation(myShader.program,"color");
+    TexcLocation = glGetAttribLocation(myShader.program,"texc");
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(tvert), tvert, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLfloat*)0 );
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLfloat*)12 );
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLfloat*)28 );
-    glEnableVertexAttribArray(2);
-    MVPlocation = glGetUniformLocation(myShader.program, "MVP");
+    glVertexAttribPointer(VertexLocation, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLfloat*)0 );
+    glVertexAttribPointer(ColorLocation, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLfloat*)12 );
+    glVertexAttribPointer(TexcLocation, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLfloat*)28 );
+	glEnableVertexAttribArray(VertexLocation);
+	glEnableVertexAttribArray(ColorLocation);
+	glEnableVertexAttribArray(TexcLocation);
     glBindVertexArray(0);
     
     glGenBuffers(1, &EBO);
@@ -336,8 +338,8 @@ int main(int argc, char *argv[]) {
     SOIL_free_image_data(img.image);
     glBindTexture(GL_TEXTURE_2D, 0);
     
-    float translations[3] = {0.0f, 0.0f, 0.0f};
-    float rotations[3] = {0.0f, 0.0f, 0.0f};
+    float translations[3] = {0.0f, 0.0f, -5.0f};
+    float rotations[3] = {0.0f, 10.0f, 20.0f};
     float threshold = 180.0f;
     float prescaler = 0.017f;
     float postscaler = 0.017f;
