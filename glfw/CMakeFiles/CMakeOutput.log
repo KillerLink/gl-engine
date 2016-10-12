@@ -1,0 +1,303 @@
+The system is: Linux - 4.6.2-1-ARCH - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/theodor/Desktop/opengl/glfw/CMakeFiles/3.6.2/CompilerIdC/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2c6c5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2c6c5.dir/build.make CMakeFiles/cmTC_2c6c5.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_2c6c5.dir/testCCompiler.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_2c6c5.dir/testCCompiler.c.o   -c /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_2c6c5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2c6c5.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_2c6c5.dir/testCCompiler.c.o  -o cmTC_2c6c5 -rdynamic 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1dc64/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1dc64.dir/build.make CMakeFiles/cmTC_1dc64.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_1dc64.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_1dc64.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.6/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_1dc64
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1dc64.dir/link.txt --verbose=1
+/usr/bin/cc      -v CMakeFiles/cmTC_1dc64.dir/CMakeCCompilerABI.c.o  -o cmTC_1dc64 -rdynamic  
+Es werden eingebaute Spezifikationen verwendet.
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper
+Ziel: x86_64-pc-linux-gnu
+Konfiguriert mit: /build/gcc/src/gcc/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release
+Thread-Modell: posix
+gcc-Version 6.1.1 20160802 (GCC) 
+COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1dc64' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccNEX3j3.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_1dc64 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. CMakeFiles/cmTC_1dc64.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1dc64' '-rdynamic' '-mtune=generic' '-march=x86-64'
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_1dc64/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_1dc64.dir/build.make CMakeFiles/cmTC_1dc64.dir/build]
+  ignore line: [make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten]
+  ignore line: [Building C object CMakeFiles/cmTC_1dc64.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_1dc64.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.6/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_1dc64]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1dc64.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_1dc64.dir/CMakeCCompilerABI.c.o  -o cmTC_1dc64 -rdynamic  ]
+  ignore line: [Es werden eingebaute Spezifikationen verwendet.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper]
+  ignore line: [Ziel: x86_64-pc-linux-gnu]
+  ignore line: [Konfiguriert mit: /build/gcc/src/gcc/configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=https://bugs.archlinux.org/ --enable-languages=c,c++,ada,fortran,go,lto,objc,obj-c++ --enable-shared --enable-threads=posix --enable-libmpx --with-system-zlib --with-isl --enable-__cxa_atexit --disable-libunwind-exceptions --enable-clocale=gnu --disable-libstdcxx-pch --disable-libssp --enable-gnu-unique-object --enable-linker-build-id --enable-lto --enable-plugin --enable-install-libiberty --with-linker-hash-style=gnu --enable-gnu-indirect-function --disable-multilib --disable-werror --enable-checking=release]
+  ignore line: [Thread-Modell: posix]
+  ignore line: [gcc-Version 6.1.1 20160802 (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/:/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/:/lib/../lib/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_1dc64' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2 -plugin /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper -plugin-opt=-fresolution=/tmp/ccNEX3j3.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_1dc64 /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1 -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib -L/lib/../lib -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../.. CMakeFiles/cmTC_1dc64.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o /usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o]
+    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccNEX3j3.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_1dc64] ==> ignore
+    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1]
+    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib]
+    arg [-L/lib/../lib] ==> dir [/lib/../lib]
+    arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+    arg [-L/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../..] ==> dir [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../..]
+    arg [CMakeFiles/cmTC_1dc64.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crtn.o] ==> ignore
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1] ==> [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1]
+  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib] ==> [/usr/lib]
+  collapse library dir [/lib/../lib] ==> [/lib]
+  collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+  collapse library dir [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../..] ==> [/usr/lib]
+  implicit libs: [c]
+  implicit dirs: [/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1;/usr/lib;/lib]
+  implicit fwks: []
+
+
+
+
+Detecting C [-std=c11] compiler features compiled with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c53d3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c53d3.dir/build.make CMakeFiles/cmTC_c53d3.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_c53d3.dir/feature_tests.c.o
+/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_c53d3.dir/feature_tests.c.o   -c /home/theodor/Desktop/opengl/glfw/CMakeFiles/feature_tests.c
+Linking C executable cmTC_c53d3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c53d3.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_c53d3.dir/feature_tests.c.o  -o cmTC_c53d3 -rdynamic 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:1c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3b2fd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3b2fd.dir/build.make CMakeFiles/cmTC_3b2fd.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_3b2fd.dir/feature_tests.c.o
+/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_3b2fd.dir/feature_tests.c.o   -c /home/theodor/Desktop/opengl/glfw/CMakeFiles/feature_tests.c
+Linking C executable cmTC_3b2fd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3b2fd.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_3b2fd.dir/feature_tests.c.o  -o cmTC_3b2fd -rdynamic 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c90] compiler features compiled with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_afd6c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_afd6c.dir/build.make CMakeFiles/cmTC_afd6c.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_afd6c.dir/feature_tests.c.o
+/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_afd6c.dir/feature_tests.c.o   -c /home/theodor/Desktop/opengl/glfw/CMakeFiles/feature_tests.c
+Linking C executable cmTC_afd6c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_afd6c.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_afd6c.dir/feature_tests.c.o  -o cmTC_afd6c -rdynamic 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_794c9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_794c9.dir/build.make CMakeFiles/cmTC_794c9.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_794c9.dir/CheckIncludeFile.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_794c9.dir/CheckIncludeFile.c.o   -c /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_794c9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_794c9.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_794c9.dir/CheckIncludeFile.c.o  -o cmTC_794c9 -rdynamic 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3d873/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3d873.dir/build.make CMakeFiles/cmTC_3d873.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_3d873.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_3d873.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.6/Modules/CheckFunctionExists.c
+Linking C executable cmTC_3d873
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3d873.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_3d873.dir/CheckFunctionExists.c.o  -o cmTC_3d873 -rdynamic -lpthread 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+Determining if the function XOpenDisplay exists in the /usr/lib64/libX11.so;/usr/lib64/libXext.so passed with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1580d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1580d.dir/build.make CMakeFiles/cmTC_1580d.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_1580d.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTC_1580d.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.6/Modules/CheckFunctionExists.c
+Linking C executable cmTC_1580d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1580d.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTC_1580d.dir/CheckFunctionExists.c.o  -o cmTC_1580d -rdynamic /usr/lib64/libX11.so /usr/lib64/libXext.so 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3e3a1/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3e3a1.dir/build.make CMakeFiles/cmTC_3e3a1.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_3e3a1.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTC_3e3a1.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.6/Modules/CheckFunctionExists.c
+Linking C executable cmTC_3e3a1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3e3a1.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTC_3e3a1.dir/CheckFunctionExists.c.o  -o cmTC_3e3a1 -rdynamic 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1fa87/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1fa87.dir/build.make CMakeFiles/cmTC_1fa87.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_1fa87.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTC_1fa87.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.6/Modules/CheckFunctionExists.c
+Linking C executable cmTC_1fa87
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1fa87.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTC_1fa87.dir/CheckFunctionExists.c.o  -o cmTC_1fa87 -rdynamic 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d439a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d439a.dir/build.make CMakeFiles/cmTC_d439a.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_d439a.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTC_d439a.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.6/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d439a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d439a.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTC_d439a.dir/CheckFunctionExists.c.o  -o cmTC_d439a -rdynamic 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_09aec/fast"
+/usr/bin/make -f CMakeFiles/cmTC_09aec.dir/build.make CMakeFiles/cmTC_09aec.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_09aec.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTC_09aec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.6/Modules/CheckFunctionExists.c
+Linking C executable cmTC_09aec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_09aec.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTC_09aec.dir/CheckFunctionExists.c.o  -o cmTC_09aec -rdynamic 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: /home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3f802/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3f802.dir/build.make CMakeFiles/cmTC_3f802.dir/build
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird betreten
+Building C object CMakeFiles/cmTC_3f802.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTC_3f802.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.6/Modules/CheckFunctionExists.c
+Linking C executable cmTC_3f802
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3f802.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber    CMakeFiles/cmTC_3f802.dir/CheckFunctionExists.c.o  -o cmTC_3f802 -rdynamic -lICE 
+make[1]: Verzeichnis „/home/theodor/Desktop/opengl/glfw/CMakeFiles/CMakeTmp“ wird verlassen
+
+
