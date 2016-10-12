@@ -1,0 +1,3 @@
+/home/theodor/Desktop/opengl/glad/CMakeFiles/edit_cache.dir
+/home/theodor/Desktop/opengl/glad/CMakeFiles/rebuild_cache.dir
+/home/theodor/Desktop/opengl/glad/CMakeFiles/glad.dir

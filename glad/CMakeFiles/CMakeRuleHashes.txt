@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+3b68882fd8a10068703c1851b1fedc56 src/glad.c
