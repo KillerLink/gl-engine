@@ -155,14 +155,7 @@ int main(int argc, char *argv[]) {
     SOIL_free_image_data(img.image);
     glBindTexture(GL_TEXTURE_2D, 0);
     
-    float translations[3] = {0.0f, 0.0f, -5.0f};
-    float rotations[3] = {0.0f, 10.0f, 20.0f};
-    float threshold = 180.0f;
-    float prescaler = 0.017f;
-    float postscaler = 0.017f;
-    
     FrameCounter fps;
-    
     
     while (!glfwWindowShouldClose(window)) {
 
@@ -171,41 +164,21 @@ int main(int argc, char *argv[]) {
 		glfwSetWindowTitle (window, title);
 
         snav.poll();
+        snav.compute();
         glfwPollEvents();
         
         glfwGetFramebufferSize(window, &width, &height);
         ratio = width / (float) height;
         
-        for (int i=0; i<3; i++) {
-          if (snav.axes[i]>threshold) {
-            translations[i]+= postscaler*pow(prescaler * (snav.axes[i] - threshold),3);
-          }
-          if (snav.axes[i]<-threshold) {
-            translations[i]-= postscaler*pow(prescaler * (-snav.axes[i] - threshold),3);
-		  }
-        }
-        for (int i=0; i<3; i++) {
-          if (snav.axes[i+3]>threshold) {
-            rotations[i]+= postscaler*pow(prescaler * (snav.axes[i+3] - threshold),3);
-          }
-          if (snav.axes[i+3]<-threshold) {
-            rotations[i]-= postscaler*pow(prescaler * (-snav.axes[i+3] - threshold),3);
-          }
-        }
-        if (snav.buttons[0]) {
-			snav.reset_state();
-			translations[0]=translations[1]=translations[2]=0.0f;
-			rotations[0]=rotations[1]=rotations[2]=0;
-        }
         
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
         //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //normal mode
         
         glm::mat4 Projection = glm::perspective(glm::radians(45.0f), ratio, 0.1f, 100.f);
-        glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(translations[0],-translations[1],translations[2]));
-        View = glm::rotate(View, rotations[2], glm::vec3(0.0f, 0.0f, 1.0f));
-        View = glm::rotate(View, rotations[1], glm::vec3(-1.0f, 0.0f, 0.0f));
-        View = glm::rotate(View, rotations[0], glm::vec3(0.0f, 1.0f, 0.0f));
+        glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(snav.translations[0],-snav.translations[1],snav.translations[2]));
+        View = glm::rotate(View, snav.rotations[2], glm::vec3(0.0f, 0.0f, 1.0f));
+        View = glm::rotate(View, snav.rotations[1], glm::vec3(-1.0f, 0.0f, 0.0f));
+        View = glm::rotate(View, snav.rotations[0], glm::vec3(0.0f, 1.0f, 0.0f));
         glm::mat4 Model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
         //View = lookAt(glm::vec3(translations[0],-translations[1],translations[2]),glm::vec3(0.0,0.0,0.0),glm::vec3(0.0,0.0,1.0));
         glm::mat4 mvp = Projection * View * Model ;

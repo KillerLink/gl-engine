@@ -8,12 +8,17 @@
 #include <fcntl.h>
 #include <linux/types.h>
 #include <linux/input.h>
+#include <glm/glm.hpp>
 
 
 #define test_bit(bit, array)  (array [bit / 8] & (1 << (bit % 8)))
+#define PRESCALER 0.017f
+#define POSTSCALER 0.017f
+#define THRESHOLD 180.0f
 
 SpaceNavigator::SpaceNavigator() {
 	fd=0;
+	reset_state();
 	ready=false;
 }
 
@@ -164,11 +169,43 @@ bool SpaceNavigator::set_led (int led_state) {
 	return ret < sizeof (struct input_event);
 }
 
-void SpaceNavigator::reset_state(void) {
-
-
-}
-
 bool SpaceNavigator::is_ready(void) {
 	return ready;
+}
+
+void SpaceNavigator::reset_state(void) {
+	translations[0]=0.1f;
+	translations[1]=0.2f;
+	translations[2]=-5.0f;
+	rotations[0]=0.3f;
+	rotations[1]=-0.3f;
+	rotations[2]=0.0f;
+}
+
+//TODO: Refactor this into own general input orientated class;
+
+void SpaceNavigator::compute(void) {
+	for (int i=0; i<3; i++) {
+		if (axes[i]>THRESHOLD) {
+			translations[i]+= POSTSCALER*pow(PRESCALER * (axes[i] - THRESHOLD),3);
+		}
+		if (axes[i]<-THRESHOLD) {
+			translations[i]-= POSTSCALER*pow(PRESCALER * (-axes[i] - THRESHOLD),3);
+		}
+	}
+	for (int i=0; i<3; i++) {
+		if (axes[i+3]>THRESHOLD) {
+			rotations[i]+= POSTSCALER*pow(PRESCALER * (axes[i+3] - THRESHOLD),3);
+		}
+		if (axes[i+3]<-THRESHOLD) {
+			rotations[i]-= POSTSCALER*pow(PRESCALER * (-axes[i+3] - THRESHOLD),3);
+		}
+	}
+	if (buttons[0]) {
+		reset_state();
+	}
+	
+	if (buttons[1]) {
+		set_led(1-led_state);
+	}
 }
