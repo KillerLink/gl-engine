@@ -22,6 +22,7 @@
 #include <SOIL/SOIL.h>
 
 #include "shader.hpp"
+#include "FrameCounter.hpp"
 
 #define test_bit(bit, array)  (array [bit / 8] & (1 << (bit % 8)))
 
@@ -77,38 +78,6 @@ vertice_t tvert[] = {
 GLuint indices[] = {
   0,1,2,3,4,5
 };
-
-
-
-
-//*
-static const char* vertexShaderText =
-"#version 330 core\n"
-"layout (location = 0) in vec3 position;\n"
-"layout (location = 1) in vec4 color;\n"
-"layout (location = 2) in vec2 texc;\n"
-"out vec4 vertexColor;\n"
-"out vec2 vertexTexc;\n"
-"uniform mat4 MVP;\n "
-"void main()\n"
-"{\n"
-"   gl_Position = MVP * vec4(position, 1.0);\n"
-"   vertexColor = color;\n"
-"   vertexTexc = texc;\n"
-"}\n";
-
-static const char* fragmentShaderText =
-"#version 330 core\n"
-"out vec4 color;\n"
-"in vec4 vertexColor;\n"
-"in vec2 vertexTexc;\n"
-"uniform sampler2D tex;\n"
-"void main()\n"
-"{\n"
-"   color = vertexColor;\n"
-"   color = texture(tex, vertexTexc);"
-"}\n";
-
 
 static void error_callback(int error, const char* description) {
     fprintf(stderr, "Error: %s\n", description);
@@ -324,8 +293,8 @@ int main(int argc, char *argv[]) {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_COLOR, GL_SRC_COLOR);
+    //glEnable(GL_BLEND);
+    //glBlendFunc(GL_SRC_COLOR, GL_SRC_COLOR);
     
     image_t img;
     img.image = SOIL_load_image("resources/container.jpg",&img.width, &img.height, 0, SOIL_LOAD_RGB);
@@ -344,7 +313,15 @@ int main(int argc, char *argv[]) {
     float prescaler = 0.017f;
     float postscaler = 0.017f;
     
+    FrameCounter fps;
+    
+    
     while (!glfwWindowShouldClose(window)) {
+
+		char title[128];
+		sprintf(title,"%4.2f ms <--> %4.2f FPS",fps.tick(),fps.getFPS());
+		glfwSetWindowTitle (window, title);
+
         poll_snavi();
         glfwPollEvents();
         
@@ -400,16 +377,12 @@ int main(int argc, char *argv[]) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-        float borderColor[] = {0.1f, 0.1f, 0.1f, 0.2f};
+        float borderColor[] = {0.1f, 0.1f, 0.1f, 1.0f};
         glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
         
         glBindVertexArray(VAO);
         glLineWidth(2.0f);
         glDrawArrays(GL_LINES, 0, 6);
-        /*
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-        glDrawElements(GL_LINES, 6, GL_UNSIGNED_INT, 0);
-        */
         glLineWidth(1.0f);
         glDrawArrays(GL_TRIANGLES, 6, 3);
         glDrawArrays(GL_TRIANGLE_STRIP, 9, 14);
