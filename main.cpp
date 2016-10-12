@@ -23,13 +23,8 @@
 
 #include "shader.hpp"
 #include "FrameCounter.hpp"
+#include "SpaceNavigator.hpp"
 
-#define test_bit(bit, array)  (array [bit / 8] & (1 << (bit % 8)))
-
-int snavi;
-int axes[6];
-int buttons[2];
-int led_state = 0;
 
 typedef struct {
     GLfloat x, y, z;
@@ -88,156 +83,6 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-int snavi_set_led (int snavi_dev, int led_state) {
-  /* this does not seem to work with 2.6.19, it apparently
-   * has worked with 2.6.8. Needs further investigation  */
-  struct input_event event;
-  int ret;
-
-  event.type  = EV_LED;
-  event.code  = LED_MISC;
-  event.value = led_state;
-
-  ret = write (snavi_dev, &event, sizeof (struct input_event));
-
-  if (ret < 0)
-    perror ("setting led state failed");
-
-  return ret < sizeof (struct input_event);
-}
-
-void init_snavi(int argc, char *argv[]) {
-  int i;
-  char name[256]= "Unknown";
-  u_int8_t evtype_bitmask[(EV_MAX + 7) / 8];
-  u_int8_t rel_bitmask[(REL_MAX + 7) / 8];
-  u_int8_t led_bitmask[(LED_MAX + 7) / 8];
-
-  snavi = open (argc > 1 ? argv[1] : "/dev/input/by-id/usb-3Dconnexion_SpaceNavigator_for_Notebooks-event-if00", O_RDWR | O_NONBLOCK);
-
-  if (snavi < 0)
-    {
-      perror ("opening the device failed");
-      exit (1);
-    }
-
-    
-  if (ioctl (snavi, EVIOCGNAME (sizeof (name)), name) < 0)
-    {
-      perror ("EVIOCGNAME ioctl failed");
-      exit (1);
-    }
-
-  printf ("found \"%s\" on %s\n", name, argv[1]);
-
-  if (ioctl (snavi, EVIOCGBIT (0, sizeof (evtype_bitmask)), evtype_bitmask) < 0)
-    {
-      perror ("EVIOCGBIT ioctl failed");
-      exit (1);
-    }
-
-  printf ("Supported event types:\n");
-  for (i = 0; i < EV_MAX; i++)
-    {
-      if (test_bit (i, evtype_bitmask))
-        {
-          /* this means that the bit is set in the event types list */
-          printf("  Event type 0x%02x ", i);
-          switch (i)
-              {
-              case EV_SYN :
-                  printf(" (Sync?)\n");
-                  break;
-              case EV_KEY :
-                  printf(" (Keys or Buttons)\n");
-                  break;
-              case EV_REL :
-                  printf(" (Relative Axes)\n");
-                  break;
-              case EV_ABS :
-                  printf(" (Absolute Axes)\n");
-                  break;
-              case EV_LED :
-                  printf(" (LEDs)\n");
-                  break;
-              case EV_REP :
-                  printf(" (Repeat)\n");
-                  break;
-              default:
-                  printf(" (Unknown event type)\n");
-              }
-        }
-    }
-
-  memset (rel_bitmask, 0, sizeof (rel_bitmask));
-
-  memset (led_bitmask, 0, sizeof (led_bitmask));
-  if (ioctl (snavi, EVIOCGBIT (EV_LED, sizeof (led_bitmask)), led_bitmask) < 0)
-    {
-      perror ("EVIOCGBIT ioctl failed");
-      exit (1);
-    }
-
-  printf ("detected leds:\n  ");
-  for (i = 0; i < LED_MAX; i++)
-    {
-      if (test_bit (i, led_bitmask))
-        printf ("%d, ", i);
-    }
-  printf ("\n");
-
-
-  axes[0] = axes[1] = axes[2] = axes[3] = axes[4] = axes[5] = 0;
-  buttons[0] = buttons[1] = 0;
-}
-
-void poll_snavi(void) {
-  struct input_event event;
-  for (int i=0; i<100; i++) {
-
-    if (read (snavi, &event, sizeof (struct input_event)) < 0) {
-      //perror ("my read error");
-      return;
-    }
-
-    switch (event.type) {
-      case EV_REL:
-        if (event.code <= REL_RZ)
-          axes[event.code - REL_X] = event.value;
-        break;
-
-      case EV_KEY:
-        if (event.code >= BTN_0 && event.code <= BTN_1)
-          buttons[event.code - BTN_0] = event.value;
-
-        if (event.code - BTN_0 == 1) {
-          led_state = 1 - led_state;
-          snavi_set_led (snavi, led_state);
-        }
-      break;
-
-      case EV_SYN:
-        /* if multiple axes change simultaneously the linux
-        * input system sends multiple EV_REL events. EV_SYN
-        * then indicates that all changes have been reported.
-        */
-        fprintf (stderr,
-        "\rState: %4d %4d %4d %4d %4d %4d - %3s %3s",
-        axes[0], axes[1], axes[2], axes[3], axes[4], axes[5],
-        buttons[0] ? "on" : "off",
-        buttons[1] ? "on" : "off");
-        //axes[0] = axes[1] = axes[2] = axes[3] = axes[4] = axes[5] = 0;
-      break;
-
-      case EV_LED:
-      break;
-
-      default:
-        fprintf (stderr, "\nunknown event type %d\n", event.code);
-    }
-  }
-}
-
 
 int width, height;
 float ratio;
@@ -246,7 +91,10 @@ int main(int argc, char *argv[]) {
 	printf("Welcome to gl-engine!\n");
 	printf("Currently the programm is looking for an 6-axis controller input devices and needs permission to open it!\n");
 	printf("This hardcoded feature will become optional later!\n");
-    init_snavi(argc,argv);
+    
+    SpaceNavigator snav;
+    snav.init();
+    
     glfwSetErrorCallback(error_callback);
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -322,33 +170,32 @@ int main(int argc, char *argv[]) {
 		sprintf(title,"%4.2f ms <--> %4.2f FPS",fps.tick(),fps.getFPS());
 		glfwSetWindowTitle (window, title);
 
-        poll_snavi();
+        snav.poll();
         glfwPollEvents();
         
         glfwGetFramebufferSize(window, &width, &height);
         ratio = width / (float) height;
         
         for (int i=0; i<3; i++) {
-          if (abs(axes[i]) > threshold) {
-          if (axes[i]>threshold) {
-            translations[i]+= postscaler*pow(prescaler * (axes[i] - threshold),3);
+          if (snav.axes[i]>threshold) {
+            translations[i]+= postscaler*pow(prescaler * (snav.axes[i] - threshold),3);
           }
-          if (axes[i]<-threshold) {
-            translations[i]-= postscaler*pow(prescaler * (-axes[i] - threshold),3);
-            }
-          }
+          if (snav.axes[i]<-threshold) {
+            translations[i]-= postscaler*pow(prescaler * (-snav.axes[i] - threshold),3);
+		  }
         }
         for (int i=0; i<3; i++) {
-          if (axes[i+3]>threshold) {
-            rotations[i]+= postscaler*pow(prescaler * (axes[i+3] - threshold),3);
+          if (snav.axes[i+3]>threshold) {
+            rotations[i]+= postscaler*pow(prescaler * (snav.axes[i+3] - threshold),3);
           }
-          if (axes[i+3]<-threshold) {
-            rotations[i]-= postscaler*pow(prescaler * (-axes[i+3] - threshold),3);
+          if (snav.axes[i+3]<-threshold) {
+            rotations[i]-= postscaler*pow(prescaler * (-snav.axes[i+3] - threshold),3);
           }
         }
-        if (buttons[0]) {
-          translations[0]=translations[1]=translations[2]=0.0f;
-          rotations[0]=rotations[1]=rotations[2]=0;
+        if (snav.buttons[0]) {
+			snav.reset_state();
+			translations[0]=translations[1]=translations[2]=0.0f;
+			rotations[0]=rotations[1]=rotations[2]=0;
         }
         
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
@@ -394,6 +241,5 @@ int main(int argc, char *argv[]) {
 
     glfwDestroyWindow(window);
     glfwTerminate();
-    close (snavi);
     return 0;
 }
