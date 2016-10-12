@@ -14,9 +14,11 @@
 
 SpaceNavigator::SpaceNavigator() {
 	fd=0;
+	ready=false;
 }
 
 SpaceNavigator::~SpaceNavigator() {
+	ready=false;
 	if (fd!=0) {
 		close (fd);
 	}
@@ -28,34 +30,35 @@ void SpaceNavigator::init(void) {
 }
 
 void SpaceNavigator::init(char* dev_path) {
-	int i;
-	char name[256]= "Unknown";
+	if (ready) {
+		if (fd!=0) {
+			close(fd);
+		}
+		ready=false;
+	}
+	char name[256]= "SNAV::Unknown";
 	u_int8_t evtype_bitmask[(EV_MAX + 7) / 8];
 	u_int8_t rel_bitmask[(REL_MAX + 7) / 8];
 	u_int8_t led_bitmask[(LED_MAX + 7) / 8];
-
 	fd = open (dev_path, O_RDWR | O_NONBLOCK);
-
 	if (fd < 0) {
-		perror ("opening the device failed");
-		exit (1);
+		perror ("SNAV::opening the device failed");
+		ready=false;
+		return;
 	}
-
-
 	if (ioctl (fd, EVIOCGNAME (sizeof (name)), name) < 0) {
-		perror ("EVIOCGNAME ioctl failed");
-		exit (1);
+		perror ("SNAV::EVIOCGNAME ioctl failed");
+		ready=false;
+		return;
 	}
-
-	printf ("found \"%s\" on %s\n", name, dev_path);
-
+	printf ("SNAV::found \"%s\" on %s\n", name, dev_path);
 	if (ioctl (fd, EVIOCGBIT (0, sizeof (evtype_bitmask)), evtype_bitmask) < 0) {
 		perror ("EVIOCGBIT ioctl failed");
-		exit (1);
+		ready=false;
+		return;
 	}
-
-	printf ("Supported event types:\n");
-	for (i = 0; i < EV_MAX; i++) {
+	printf ("SNAV::Supported event types:\n");
+	for (int i = 0; i < EV_MAX; i++) {
 		if (test_bit (i, evtype_bitmask)) {
 			/* this means that the bit is set in the event types list */
 			printf("  Event type 0x%02x ", i);
@@ -83,35 +86,33 @@ void SpaceNavigator::init(char* dev_path) {
 			}
 		}
 	}
-
 	memset (rel_bitmask, 0, sizeof (rel_bitmask));
-
 	memset (led_bitmask, 0, sizeof (led_bitmask));
 	if (ioctl (fd, EVIOCGBIT (EV_LED, sizeof (led_bitmask)), led_bitmask) < 0) {
 		perror ("EVIOCGBIT ioctl failed");
 		exit (1);
 	}
-
 	printf ("detected leds:\n  ");
-	for (i = 0; i < LED_MAX; i++)
-	{
-	if (test_bit (i, led_bitmask))
-	printf ("%d, ", i);
+	for (int i = 0; i < LED_MAX; i++) {
+		if (test_bit (i, led_bitmask))
+		printf ("%d, ", i);
 	}
 	printf ("\n");
-	
 	axes[0] = axes[1] = axes[2] = axes[3] = axes[4] = axes[5] = 0;
 	buttons[0] = buttons[1] = 0;
+	ready=true;
 }
 
 void SpaceNavigator::poll(void) {
+	if (!ready) {
+		return;
+	}
 	struct input_event event;
 	for (int i=0; i<100; i++) {
 		if (read (fd, &event, sizeof (struct input_event)) < 0) {
 			//perror ("my read error");
 			return;
 		}
-
 		switch (event.type) {
 			case EV_REL:
 				if (event.code <= REL_RZ)
@@ -145,9 +146,12 @@ void SpaceNavigator::poll(void) {
 	}
 }
 
-int SpaceNavigator::set_led (int led_state) {
+bool SpaceNavigator::set_led (int led_state) {
 	/* this does not seem to work with 2.6.19, it apparently
 	* has worked with 2.6.8. Needs further investigation  */
+	if (!ready) {
+		return false;
+	}
 	struct input_event event;
 	int ret;
 	event.type  = EV_LED;
@@ -155,7 +159,7 @@ int SpaceNavigator::set_led (int led_state) {
 	event.value = led_state;
 	ret = write (fd, &event, sizeof (struct input_event));
 	if (ret < 0) {
-		perror ("setting led state failed");
+		perror ("SNAV::setting led state failed");
 	}
 	return ret < sizeof (struct input_event);
 }
@@ -163,4 +167,8 @@ int SpaceNavigator::set_led (int led_state) {
 void SpaceNavigator::reset_state(void) {
 
 
+}
+
+bool SpaceNavigator::is_ready(void) {
+	return ready;
 }

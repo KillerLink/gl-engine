@@ -4,7 +4,7 @@
 class SpaceNavigator {
 	private:
 		int fd=0; //Device File Descriptor
-		int ready = 0;
+		bool ready = 0;
 		int led_state = 0;	
 	public:
 		int axes[6];
@@ -14,8 +14,9 @@ class SpaceNavigator {
 		void init(void);
 		void init(char* dev_path);
 		void poll(void);
-		int set_led (int led_state);
+		bool set_led (int led_state);
 		void reset_state(void);
+		bool is_ready(void);
 
 };
 
