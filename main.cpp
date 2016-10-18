@@ -170,7 +170,6 @@ int main(int argc, char *argv[]) {
         glfwGetFramebufferSize(window, &width, &height);
         ratio = width / (float) height;
         
-        
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
         //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //normal mode
         
@@ -207,6 +206,22 @@ int main(int argc, char *argv[]) {
         glDrawArrays(GL_TRIANGLES, 6, 3);
         glDrawArrays(GL_TRIANGLE_STRIP, 9, 14);
         glBindVertexArray(0);
+        
+        /* 
+         * //second strange wrong cube
+		Projection = glm::perspective(glm::radians(45.0f), ratio, 0.1f, 100.f);
+        View = glm::translate(glm::mat4(1.0f), glm::vec3(snav.translations[0]+3.0f,-snav.translations[1],snav.translations[2]));
+        View = glm::rotate(View, snav.rotations[2], glm::vec3(0.0f, 0.0f, 1.0f));
+        View = glm::rotate(View, snav.rotations[1], glm::vec3(-1.0f, 0.0f, 0.0f));
+        View = glm::rotate(View, snav.rotations[0], glm::vec3(0.0f, 1.0f, 0.0f));
+        Model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
+        //View = lookAt(glm::vec3(translations[0],-translations[1],translations[2]),glm::vec3(0.0,0.0,0.0),glm::vec3(0.0,0.0,1.0));
+        mvp = Projection * View * Model ;
+        glUniformMatrix4fv(MVPlocation, 1, GL_FALSE, &mvp[0][0]);
+		glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLE_STRIP, 9, 14);
+        glBindVertexArray(0);
+        //*/
             
         glfwSwapBuffers(window);
     }
