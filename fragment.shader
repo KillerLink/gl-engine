@@ -6,5 +6,5 @@ uniform sampler2D tex;
 void main()
 {
    color = vertexColor;
-   color = texture(tex, vertexTexc);
+   //color = texture(tex, vertexTexc);
 }

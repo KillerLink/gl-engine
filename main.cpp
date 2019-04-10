@@ -66,12 +66,27 @@ vertice_t tvert[] = {
   cube[1],cube[2],cube[5],cube[6],
   cube[7],cube[2],cube[3],cube[1],
   cube[0],cube[5],cube[4],cube[7],
-  cube[0],cube[3]
+  cube[0],cube[3],
   
+  cube[0],cube[1],cube[2],cube[3],
+  cube[4],cube[5],cube[6],cube[7]
 };
 
 GLuint indices[] = {
-  0,1,2,3,4,5
+  23,24,25,
+  25,26,23,
+  27,28,29,
+  29,30,27,
+  
+  23,24,27,
+  27,28,24,
+  25,26,29,
+  29,30,26,
+  
+  25,25,28,
+  28,29,25,
+  23,26,30,
+  27,30,23
 };
 
 static void error_callback(int error, const char* description) {
@@ -134,11 +149,13 @@ int main(int argc, char *argv[]) {
 	glEnableVertexAttribArray(VertexLocation);
 	glEnableVertexAttribArray(ColorLocation);
 	glEnableVertexAttribArray(TexcLocation);
-    glBindVertexArray(0);
-    
+	
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    
+    glBindVertexArray(0);
+    
     
     glEnable(GL_DEPTH_TEST);
     //glEnable(GL_BLEND);
@@ -200,28 +217,19 @@ int main(int argc, char *argv[]) {
         glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
         
         glBindVertexArray(VAO);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //normal mode
         glLineWidth(2.0f);
         glDrawArrays(GL_LINES, 0, 6);
         glLineWidth(1.0f);
         glDrawArrays(GL_TRIANGLES, 6, 3);
-        glDrawArrays(GL_TRIANGLE_STRIP, 9, 14);
+        //glDrawArrays(GL_TRIANGLE_STRIP, 9, 14);
         glBindVertexArray(0);
         
-        /* 
-         * //second strange wrong cube
-		Projection = glm::perspective(glm::radians(45.0f), ratio, 0.1f, 100.f);
-        View = glm::translate(glm::mat4(1.0f), glm::vec3(snav.translations[0]+3.0f,-snav.translations[1],snav.translations[2]));
-        View = glm::rotate(View, snav.rotations[2], glm::vec3(0.0f, 0.0f, 1.0f));
-        View = glm::rotate(View, snav.rotations[1], glm::vec3(-1.0f, 0.0f, 0.0f));
-        View = glm::rotate(View, snav.rotations[0], glm::vec3(0.0f, 1.0f, 0.0f));
-        Model = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
-        //View = lookAt(glm::vec3(translations[0],-translations[1],translations[2]),glm::vec3(0.0,0.0,0.0),glm::vec3(0.0,0.0,1.0));
-        mvp = Projection * View * Model ;
-        glUniformMatrix4fv(MVPlocation, 1, GL_FALSE, &mvp[0][0]);
-		glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLE_STRIP, 9, 14);
+        glBindVertexArray(VAO);
+        glLineWidth(2.0f);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //wireframe mode
+        glDrawElements(GL_TRIANGLES,sizeof(indices)/sizeof(indices[0]),GL_UNSIGNED_INT,0);
         glBindVertexArray(0);
-        //*/
             
         glfwSwapBuffers(window);
     }
